@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="addProductPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.addProductController">
+    <children>
+        <TextField disable="true" layoutX="187.0" layoutY="96.0" />
+        <TextField fx:id="productNameField" layoutX="187.0" layoutY="135.0" />
+        <TextField fx:id="productInventoryField" layoutX="187.0" layoutY="175.0" prefHeight="25.0" prefWidth="96.0" />
+        <TextField fx:id="productCostField" layoutX="187.0" layoutY="214.0" prefHeight="25.0" prefWidth="96.0" />
+        <TextField fx:id="productMaxField" layoutX="187.0" layoutY="249.0" prefHeight="25.0" prefWidth="96.0" />
+        <TextField fx:id="productMinField" layoutX="341.0" layoutY="249.0" prefHeight="25.0" prefWidth="52.0" />
+        <Label layoutX="28.0" layoutY="35.0" text="Add Product">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <Label layoutX="118.0" layoutY="100.0" text="ID" />
+        <Label layoutX="118.0" layoutY="139.0" text="Name" />
+        <Label layoutX="118.0" layoutY="179.0" text="Inv" />
+        <Label layoutX="118.0" layoutY="218.0" text="Price/Cost" />
+        <Label layoutX="118.0" layoutY="253.0" text="Max" />
+        <Button layoutX="373.0" layoutY="313.0" mnemonicParsing="false" onAction="#onProductSaveButtonClicked" text="Save" />
+        <Button layoutX="458.0" layoutY="313.0" mnemonicParsing="false" onAction="#onAddProductExitClicked" text="Cancel" />
+        <Label layoutX="299.0" layoutY="253.0" text="Min" />
+    </children>
+</AnchorPane>
