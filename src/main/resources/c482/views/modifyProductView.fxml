@@ -8,8 +8,8 @@
     <children>
         <TextField disable="true" layoutX="187.0" layoutY="96.0" />
         <TextField layoutX="187.0" layoutY="135.0" />
-        <TextField layoutX="187.0" layoutY="214.0" prefHeight="25.0" prefWidth="96.0" />
         <TextField layoutX="187.0" layoutY="175.0" prefHeight="25.0" prefWidth="96.0" />
+        <TextField layoutX="187.0" layoutY="214.0" prefHeight="25.0" prefWidth="96.0" />
         <TextField layoutX="187.0" layoutY="249.0" prefHeight="25.0" prefWidth="96.0" />
         <TextField layoutX="341.0" layoutY="249.0" prefHeight="25.0" prefWidth="52.0" />
         <Label layoutX="28.0" layoutY="35.0" text="Modify Product">
