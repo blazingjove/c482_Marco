@@ -106,11 +106,16 @@ public class modifyPartController implements Initializable {
 
         // Create an instance of the appropriate subclass based on the selected radio button
         Part modPart;
+/**
+TODO need to pull the index from current item and change if loop to prevent a part from being creates so the ID counter in PART does not ++ when save button is clicked
+ */
         if (inHouseRadioButton.isSelected()) {
             int machineId = Integer.parseInt(lastFieldText);
             modPart = new InHouse(partId, name, price, stock, min, max, machineId);
+            Inventory.updatePart(partId-1 ,modPart);
         } else if (outsourcedRadioButton.isSelected()) {
             modPart = new Outsourced(partId, name, price, stock, min, max, lastFieldText);
+            Inventory.updatePart(partId-1 ,modPart);
         } else {
             // Handle the case where neither radio button is selected
             // show an error message or take appropriate action
@@ -120,7 +125,7 @@ public class modifyPartController implements Initializable {
         //Update part
         Inventory.updatePart(partId-1 ,modPart);
         //System.out.println(partId);
-        //System.out.println(modPart.getId());
+        System.out.println(modPart.getId());
 
         //closes window once part is successfully added
         stage = (Stage) modifyPartPane.getScene().getWindow();

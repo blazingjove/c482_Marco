@@ -195,11 +195,7 @@ public class mainController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        partID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        partName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        partInventory.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        partCost.setCellValueFactory(new PropertyValueFactory<>("price"));
-        partTable.setItems(Inventory.getAllParts());
+        partTableMethod(partID, partName, partInventory, partCost, partTable);
 
         productID.setCellValueFactory(new PropertyValueFactory<>("id"));
         productName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -258,5 +254,14 @@ public class mainController implements Initializable{
 
 
         System.out.println("I am Initialized");
+    }
+
+    public static void partTableMethod(TableColumn<Part, Integer> partID, TableColumn<Part, Integer> partName, TableColumn<Part, Integer> partInventory, TableColumn<Part, Integer> partCost, TableView<Part> partTable) {
+        partID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        partName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        partInventory.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        partCost.setCellValueFactory(new PropertyValueFactory<>("price"));
+        partTable.setItems(Inventory.getAllParts());
+
     }
 }
