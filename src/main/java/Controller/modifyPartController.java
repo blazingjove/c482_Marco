@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class modifyPartController implements Initializable {
+    private int selectedIndex;
     public RadioButton inHouseRadioButton;
     public RadioButton outsourcedRadioButton;
     @FXML
@@ -63,8 +64,9 @@ public class modifyPartController implements Initializable {
             lastLabel.setText("Company Name");
         }
     }
-    public void setSelectedPart(Part selectedPart) {
+    public void setSelectedPart(Part selectedPart, int selectedIndex) {
         this.selectedPart = selectedPart;
+        this.selectedIndex = selectedIndex; // Set the index of the selected part
         // Call a method to display the selected part's data in the fields
         displaySelectedPartData();
     }
@@ -91,12 +93,14 @@ public class modifyPartController implements Initializable {
         partMaxField.setText(Integer.toString(selectedPart.getMax()));
         partMinField.setText(Integer.toString(selectedPart.getMin()));
 
+        System.out.println(selectedPart.getId());
+
     }
 
+
     @FXML
-    public void onModifyPartSaveClicked(ActionEvent actionEvent) {
-        int partId = Integer.parseInt(partIdField.getText());
-        //System.out.println(partId);
+    public void onModifyPartSaveClicked() {
+        int partId = selectedPart.getId();
         String name = partNameField.getText();
         double price = Double.parseDouble(partCostField.getText());
         int stock = Integer.parseInt(partInventoryField.getText());
@@ -106,6 +110,7 @@ public class modifyPartController implements Initializable {
 
         // Create an instance of the appropriate subclass based on the selected radio button
         Part modPart;
+
         if (inHouseRadioButton.isSelected()) {
             int machineId = Integer.parseInt(lastFieldText);
             modPart = new InHouse(partId, name, price, stock, min, max, machineId);
@@ -116,11 +121,9 @@ public class modifyPartController implements Initializable {
             // show an error message or take appropriate action
             return;
         }
+
         modPart.setId(partId);
-        //Update part
-        Inventory.updatePart(partId-1 ,modPart);
-        //System.out.println(partId);
-        //System.out.println(modPart.getId());
+        Inventory.updatePart(selectedIndex ,modPart);
 
         //closes window once part is successfully added
         stage = (Stage) modifyPartPane.getScene().getWindow();
@@ -131,7 +134,6 @@ public class modifyPartController implements Initializable {
         if (mainController != null) {
             mainController.showMainView();
         }
-
     }
 
     // when add part window closed main view will be displayed
