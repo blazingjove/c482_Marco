@@ -94,6 +94,7 @@ public class mainController implements Initializable{
     @FXML
     public void onPartModify() {
         Part selectedPart = partTable.getSelectionModel().getSelectedItem();
+        int selectedIndex = partTable.getSelectionModel().getSelectedIndex();
         if (selectedPart != null) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/c482/views/modifyPartView.fxml"));
@@ -102,11 +103,12 @@ public class mainController implements Initializable{
                 //pulls the data of the item that is selected
                 modifyPartController modifyPartController = loader.getController();
                 modifyPartController.setMainControllerRef(this);
-                modifyPartController.setSelectedPart(selectedPart);
+                modifyPartController.setSelectedPart(selectedPart, selectedIndex);
 
                 //open modify part scene
                 Stage stage = new Stage();
                 stage.setTitle("Modify Part");
+                System.out.println("index is:" + selectedIndex);
                 stage.setScene(new Scene(root));
 
                 //show main when part mod closed
