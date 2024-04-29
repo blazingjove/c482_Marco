@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Inventory;
 import Model.Part;
+import Model.Product;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
@@ -61,9 +62,33 @@ public class modifyProductController implements Initializable {
         }
     }
 
+    @FXML
+    public void onModifySaveButtonClicked(ActionEvent actionEvent) {
+        String name = productNameField.getText();
+        double price = Double.parseDouble(productCostField.getText());
+        int stock = Integer.parseInt(productInventoryField.getText());
+        int min = Integer.parseInt(productMinField.getText());
+        int max = Integer.parseInt(productMaxField.getText());
+
+        Product newProduct = new Product(0,name, price, stock,min,max);
+
+        // Call the addProduct method from the Inventory class
+        Inventory.addProduct(newProduct);
+
+        //closes window once product is successfully added
+        stage = (Stage) modifyProductPane.getScene().getWindow();
+        System.out.println("Product Added");
+        stage.close();
+
+        // Show the main view after closing the "Add Part" window
+        if (mainController != null) {
+            mainController.showMainView();
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("modify product Initialized");
+        System.out.println("modify product Initialized /n");
         //method from mainController.java
         Controller.mainController.partTableMethod(partID, partName, partInventory, partCost, partTable);
 

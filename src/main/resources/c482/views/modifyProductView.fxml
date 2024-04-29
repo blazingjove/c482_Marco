@@ -22,7 +22,7 @@
     <Label layoutX="28.0" layoutY="178.0" text="Inv" />
     <Label layoutX="28.0" layoutY="217.0" text="Price/Cost" />
     <Label layoutX="28.0" layoutY="252.0" text="Max" />
-    <Button layoutX="730.0" layoutY="589.0" mnemonicParsing="false" prefWidth="41.0" text="Save" />
+    <Button layoutX="730.0" layoutY="589.0" mnemonicParsing="false" onAction="#onModifySaveButtonClicked" prefWidth="41.0" text="Save" />
     <Button layoutX="821.0" layoutY="589.0" mnemonicParsing="false" onAction="#modifyProductExitClicked" text="Cancel" />
     <Label layoutX="209.0" layoutY="252.0" text="Min" />
     <TableView fx:id="partTable" layoutX="423.0" layoutY="55.0" prefHeight="200.0" prefWidth="450.0">
