@@ -43,10 +43,10 @@ public class addPartController implements Initializable {
     private TextField partMinField;
     @FXML
     private TextField partLastField;
+    public Label lastLabel;
 
     /** This method will change the text of the in correspondence with the radio buttons
      */
-    public Label lastLabel;
     @FXML
     private void onRadioButtonSelected() {
         if (inHouseRadioButton.isSelected()) {
@@ -56,8 +56,11 @@ public class addPartController implements Initializable {
         }
     }
 
+    /** this method will save the data and make the appropriate item to be saved in the inventory
+     */
     @FXML
     public void onPartSaveButtonClicked(ActionEvent actionEvent) {
+
         String name = partNameField.getText();
         double price = Double.parseDouble(partCostField.getText());
         int stock = Integer.parseInt(partInventoryField.getText());
@@ -65,9 +68,9 @@ public class addPartController implements Initializable {
         int max = Integer.parseInt(partMaxField.getText());
         String lastFieldText = partLastField.getText();
 
-
         // Create an instance of the appropriate subclass based on the selected radio button
         Part newPart;
+
         if (inHouseRadioButton.isSelected()) {
             int machineId = Integer.parseInt(lastFieldText);
             newPart = new InHouse(0, name, price, stock, min, max, machineId);
