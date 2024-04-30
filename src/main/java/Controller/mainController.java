@@ -1,8 +1,6 @@
 package Controller;
 
-import Model.Inventory;
-import Model.Part;
-import Model.Product;
+import Model.*;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
@@ -162,6 +160,8 @@ public class mainController implements Initializable{
 
         @FXML
         public void onProductModify(){
+            Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
+            int productIndex = productTable.getSelectionModel().getSelectedIndex();
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/c482/views/modifyProductView.fxml"));
@@ -172,6 +172,7 @@ public class mainController implements Initializable{
                 // Pass the mainController reference to addPartController
                 modifyProductController modifyProductController = fxmlLoader.getController();
                 modifyProductController.setMainControllerRef(this);
+                modifyProductController.setSelectedProduct(selectedProduct, productIndex);
 
                 //hide the main view
                 mainPane.getScene().getWindow().hide();
