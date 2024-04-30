@@ -6,7 +6,7 @@
 
 <AnchorPane fx:id="modifyProductPane" prefHeight="635.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.modifyProductController">
 <children>
-    <TextField disable="true" layoutX="97.0" layoutY="95.0" promptText="auto-gen Disabled" />
+    <TextField fx:id="productIdField" disable="true" layoutX="97.0" layoutY="95.0" promptText="auto-gen Disabled" />
     <TextField fx:id="productNameField" layoutX="97.0" layoutY="134.0" />
     <TextField fx:id="productInventoryField" layoutX="97.0" layoutY="174.0" prefHeight="25.0" prefWidth="96.0" />
     <TextField fx:id="productCostField" layoutX="97.0" layoutY="213.0" prefHeight="25.0" prefWidth="96.0" />

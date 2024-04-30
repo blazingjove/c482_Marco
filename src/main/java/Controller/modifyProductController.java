@@ -13,7 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,6 +21,8 @@ public class modifyProductController implements Initializable {
     public AnchorPane modifyProductPane;
     private mainController mainController; // Reference to the main controller
     //text fields for user inputs
+    @FXML
+    private TextField productIdField;
     @FXML
     private TextField productNameField;
     @FXML
@@ -44,12 +45,35 @@ public class modifyProductController implements Initializable {
     private TableColumn<Part, Integer>  partCost;
     @FXML
     private TextField partSearchTextField;
+    @FXML
+    private Product selectedProduct;
+    private int productIndex;
+
     public void setMainControllerRef(mainController mainController) {
         this.mainController = mainController;
     }
     Stage stage;
 
+    public void setSelectedProduct(Product selectedProduct, int productIndex) {
+        this.selectedProduct = selectedProduct;
+        this.productIndex = productIndex; // Set the index of the selected part
+        // Call a method to display the selected part's data in the fields
+        displaySelectedProductData();
+    }
 
+    private void displaySelectedProductData() {
+        // Populate the fields with the selected product data
+
+        productIdField.setText(Integer.toString(selectedProduct.getId()));
+        productNameField.setText(selectedProduct.getName());
+        productInventoryField.setText(Integer.toString(selectedProduct.getStock()));
+        productCostField.setText(Double.toString(selectedProduct.getPrice()));
+        productMaxField.setText(Integer.toString(selectedProduct.getMax()));
+        productMinField.setText(Integer.toString(selectedProduct.getMin()));
+
+        System.out.println(selectedProduct.getId());
+
+    }
 
     //code closes the modify part view and opens main when clicked
     public void modifyProductExitClicked (ActionEvent actionEvent){
@@ -70,10 +94,15 @@ public class modifyProductController implements Initializable {
         int min = Integer.parseInt(productMinField.getText());
         int max = Integer.parseInt(productMaxField.getText());
 
-        Product newProduct = new Product(0,name, price, stock,min,max);
+        //update all sections of part with the values in the text-fields
+        selectedProduct.setName(name);
+        selectedProduct.setPrice(price);
+        selectedProduct.setStock(stock);
+        selectedProduct.setMin(min);
+        selectedProduct.setMax(max);
 
         // Call the addProduct method from the Inventory class
-        Inventory.addProduct(newProduct);
+        Inventory.updateProduct(productIndex, selectedProduct);
 
         //closes window once product is successfully added
         stage = (Stage) modifyProductPane.getScene().getWindow();
