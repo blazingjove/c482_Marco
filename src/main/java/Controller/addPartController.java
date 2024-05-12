@@ -3,13 +3,13 @@ package Controller;
 import Model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -58,8 +58,17 @@ public class addPartController implements Initializable {
     /** this method will save the data and make the appropriate item to be saved in the inventory
      */
     @FXML
-    public void onPartSaveButtonClicked() {
+    public void onPartSaveButtonClicked(){
 
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setTitle("Error");
+        if( partNameField.getText().isEmpty() || partInventoryField.getText().isEmpty() || partCostField.getText().isEmpty() || partMaxField.getText().isEmpty() || partMinField.getText().isEmpty() || partLastField.getText().isEmpty()) {
+            errorAlert.setContentText("Please fill all the fields of the form");
+            errorAlert.showAndWait();
+            if (stage != null) {
+                stage.show();
+            }
+        }
 
         String name = partNameField.getText();
         double price = Double.parseDouble(partCostField.getText());
@@ -67,6 +76,7 @@ public class addPartController implements Initializable {
         int min = Integer.parseInt(partMinField.getText());
         int max = Integer.parseInt(partMaxField.getText());
         String lastFieldText = partLastField.getText();
+
 
         // Create an instance of the appropriate subclass based on the selected radio button
         Part newPart;
@@ -94,6 +104,7 @@ public class addPartController implements Initializable {
         if (mainController != null) {
             mainController.showMainView();
         }
+
     }
 
     // when add part window closed main view will be displayed
