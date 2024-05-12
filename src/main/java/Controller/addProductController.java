@@ -5,13 +5,11 @@ import Model.Part;
 import Model.Product;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -52,7 +50,7 @@ public class addProductController implements Initializable {
     private TextField partSearchTextField;
 
     @FXML
-    public void onProductSaveButtonClicked(ActionEvent actionEvent) {
+    public void onProductSaveButtonClicked() {
         String name = productNameField.getText();
         double price = Double.parseDouble(productCostField.getText());
         int stock = Integer.parseInt(productInventoryField.getText());
@@ -77,7 +75,7 @@ public class addProductController implements Initializable {
         }
     }
 
-    public void onAddProductExitClicked (ActionEvent actionEvent){
+    public void onAddProductExitClicked (){
         stage = (Stage) addProductPane.getScene().getWindow();
         System.out.println("Add product closed");
         stage.close();
@@ -94,7 +92,7 @@ public class addProductController implements Initializable {
         Controller.mainController.partTableMethod(partID, partName, partInventory, partCost, partTable);
 
         // Create a FilteredList and SortedList for the partTable
-        var filteredPartList = new FilteredList<Part>(Inventory.getAllParts(), p -> true);
+        var filteredPartList = new FilteredList<>(Inventory.getAllParts(), p -> true);
 
         // Bind the filtered list to the partSearchTextField text property
         partSearchTextField.textProperty().addListener((observable, oldValue, newValue) -> filteredPartList.setPredicate(part -> {

@@ -22,7 +22,7 @@
     <Label layoutX="28.0" layoutY="178.0" text="Inv" />
     <Label layoutX="28.0" layoutY="217.0" text="Price/Cost" />
     <Label layoutX="28.0" layoutY="252.0" text="Max" />
-    <Button layoutX="730.0" layoutY="589.0" mnemonicParsing="false" onAction="#onModifySaveButtonClicked" prefWidth="41.0" text="Save" />
+    <Button layoutX="708.0" layoutY="589.0" mnemonicParsing="false" onAction="#onModifySaveButtonClicked" prefHeight="24.0" prefWidth="63.0" text="Save" />
     <Button layoutX="821.0" layoutY="589.0" mnemonicParsing="false" onAction="#modifyProductExitClicked" text="Cancel" />
     <Label layoutX="209.0" layoutY="252.0" text="Min" />
     <TableView fx:id="partTable" layoutX="423.0" layoutY="55.0" prefHeight="200.0" prefWidth="450.0">
@@ -34,7 +34,7 @@
         </columns>
 
     </TableView>
-    <TableView layoutX="423.0" layoutY="333.0" prefHeight="200.0" prefWidth="450.0">
+    <TableView layoutX="423.0" layoutY="318.0" prefHeight="200.0" prefWidth="450.0">
         <columns>
             <TableColumn prefWidth="79.0" text="Part ID" />
             <TableColumn prefWidth="113.0" text="Part Name" />
@@ -44,6 +44,6 @@
     </TableView>
     <TextField fx:id="partSearchTextField" layoutX="674.0" layoutY="23.0" prefHeight="25.0" prefWidth="200.0" promptText="Search part by ID or Name" />
     <Button layoutX="773.0" layoutY="269.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Add" />
-    <Button layoutX="730.0" layoutY="549.0" mnemonicParsing="false" text="Remove Associated Part" />
+    <Button layoutX="697.0" layoutY="531.0" mnemonicParsing="false" text="Remove Associated Part" />
 </children>
 </AnchorPane>

@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.scene.Scene;
@@ -25,19 +26,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class mainController implements Initializable{
 
-
     // blow is the logic to exit main view when exit button is hit
     @FXML
     private AnchorPane mainPane;
     Stage stage;
     public void onExitClicked() {
-        stage = (Stage) mainPane.getScene().getWindow();
-        System.out.println("Program closed");
-        stage.close();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
+        alert.setTitle("Exit");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            System.exit(0);
+        }
     }
 
     //variables for parts
-
     @FXML
     private TableView<Part> partTable;
     @FXML
@@ -121,18 +123,29 @@ public class mainController implements Initializable{
     // onPartDelete button set to delete data selected
     @FXML
     public void onPartDelete(){
-        Part selectedPart = partTable.getSelectionModel().getSelectedItem();
-        Inventory.deletePart(selectedPart);
+        //alert will promt user to confirm or cancel part deletion
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this part?");
+        alert.setTitle("Delete Part");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            Part selectedPart = partTable.getSelectionModel().getSelectedItem();
+            Inventory.deletePart(selectedPart);
+        }
     }
 
     // onProductDelete button will delete selected product
     @FXML
     public void onProductDelete(){
-        System.out.println("test 1");
-        Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
-        Inventory.deleteProduct(selectedProduct);
+        //alert will prompt user to confirm or cancel product deletion
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this product?");
+        alert.setTitle("Delete Product");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            System.out.println("test 1");
+            Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
+            Inventory.deleteProduct(selectedProduct);
+        }
     }
-
 
     //opens product add view and closes main temporarily
     @FXML
@@ -190,50 +203,37 @@ public class mainController implements Initializable{
     private TextField partSearchTextField;
     @FXML
     private TextField productSearchTextField;
-
-
-
-
     //initialized command when code is ran
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         partTableMethod(partID, partName, partInventory, partCost, partTable);
-
         productID.setCellValueFactory(new PropertyValueFactory<>("id"));
         productName.setCellValueFactory(new PropertyValueFactory<>("name"));
         productInventory.setCellValueFactory(new PropertyValueFactory<>("stock"));
         productCost.setCellValueFactory(new PropertyValueFactory<>("price"));
         productTable.setItems(Inventory.getAllProducts());
-
-
         // Create a FilteredList and SortedList for the partTable
-        FilteredList<Part> filteredPartList = new FilteredList<>(Inventory.getAllParts(), p -> true);
 
+        FilteredList<Part> filteredPartList = new FilteredList<>(Inventory.getAllParts(), p -> true);
         // Bind the filtered list to the partSearchTextField text property
+
         partSearchTextField.textProperty().addListener((observable, oldValue, newValue) -> filteredPartList.setPredicate(part -> {
             if (newValue == null || newValue.isEmpty()) {
                 return true;
             }
-
             String lowerCaseFilter = newValue.toLowerCase();
-
             // Compare all part attributes with the search text
             return part.getName().toLowerCase().contains(lowerCaseFilter)
                     || String.valueOf(part.getId()).contains(lowerCaseFilter);
         }));
-
         // Create a SortedList to display the filtered items in the table
         SortedList<Part> sortedPartList = new SortedList<>(filteredPartList);
         sortedPartList.comparatorProperty().bind(partTable.comparatorProperty());
-
         // Set the sorted list as the items of the partTable
         partTable.setItems(sortedPartList);
-
 /*
  same as  above to filter product text area input in product table
 */
-
         // Create a FilteredList and SortedList for the ProductTable
         FilteredList<Product> filteredProductList = new FilteredList<>(Inventory.getAllProducts(), p -> true);
 
@@ -253,18 +253,13 @@ public class mainController implements Initializable{
 
 // Set the sorted list as the items of the product table
         productTable.setItems(sortedProductList);
-
-
-
         System.out.println("I am Initialized");
     }
-
     public static void partTableMethod(TableColumn<Part, Integer> partID, TableColumn<Part, Integer> partName, TableColumn<Part, Integer> partInventory, TableColumn<Part, Integer> partCost, TableView<Part> partTable) {
         partID.setCellValueFactory(new PropertyValueFactory<>("id"));
         partName.setCellValueFactory(new PropertyValueFactory<>("name"));
         partInventory.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partCost.setCellValueFactory(new PropertyValueFactory<>("price"));
         partTable.setItems(Inventory.getAllParts());
-
     }
 }

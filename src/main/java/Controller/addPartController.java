@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -59,7 +58,8 @@ public class addPartController implements Initializable {
     /** this method will save the data and make the appropriate item to be saved in the inventory
      */
     @FXML
-    public void onPartSaveButtonClicked(ActionEvent actionEvent) {
+    public void onPartSaveButtonClicked() {
+
 
         String name = partNameField.getText();
         double price = Double.parseDouble(partCostField.getText());
@@ -97,7 +97,7 @@ public class addPartController implements Initializable {
     }
 
     // when add part window closed main view will be displayed
-    public void onAddPartExitClicked(ActionEvent actionEvent) {
+    public void onAddPartExitClicked() {
         stage = (Stage) addPartPane.getScene().getWindow();
         System.out.println("Add part closed");
         stage.close();

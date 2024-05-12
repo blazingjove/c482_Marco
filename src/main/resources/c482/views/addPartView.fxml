@@ -33,7 +33,7 @@
         <Label layoutX="118.0" layoutY="253.0" text="Max" />
         <Button layoutX="483.0" layoutY="320.0" mnemonicParsing="false" onAction="#onAddPartExitClicked" text="Cancel" />
         <Button layoutX="395.0" layoutY="320.0" mnemonicParsing="false" onAction="#onPartSaveButtonClicked" text="Save" />
-        <Label fx:id="lastLabel" layoutX="96.0" layoutY="293.0" text="Machine ID" />
+        <Label fx:id="lastLabel" layoutX="72.0" layoutY="294.0" text="Machine ID" />
         <Label layoutX="315.0" layoutY="253.0" text="Min" />
     </children>
 </AnchorPane>
