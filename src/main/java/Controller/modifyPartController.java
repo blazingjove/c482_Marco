@@ -82,8 +82,6 @@ public class modifyPartController implements Initializable {
             outsourcedRadioButton.setSelected(true);
         }
 
-
-
         // Populate the fields with the selected part's data
         partIdField.setText(Integer.toString(selectedPart.getId()));
         partNameField.setText(selectedPart.getName());
@@ -93,7 +91,6 @@ public class modifyPartController implements Initializable {
         partMinField.setText(Integer.toString(selectedPart.getMin()));
 
         System.out.println(selectedPart.getId());
-
     }
 
 
@@ -146,8 +143,6 @@ public class modifyPartController implements Initializable {
             mainController.showMainView();
         }
     }
-
-
 
     //save data and pass to main controller to display on table
 

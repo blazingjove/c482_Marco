@@ -6,10 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -58,16 +55,15 @@ public class addPartController implements Initializable {
     /** this method will save the data and make the appropriate item to be saved in the inventory
      */
     @FXML
-    public void onPartSaveButtonClicked(){
+    public void onPartSaveButtonClicked() {
 
+        //error handling for blank sections
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setTitle("Error");
         if( partNameField.getText().isEmpty() || partInventoryField.getText().isEmpty() || partCostField.getText().isEmpty() || partMaxField.getText().isEmpty() || partMinField.getText().isEmpty() || partLastField.getText().isEmpty()) {
             errorAlert.setContentText("Please fill all the fields of the form");
             errorAlert.showAndWait();
-            if (stage != null) {
-                stage.show();
-            }
+            return;
         }
 
         String name = partNameField.getText();
@@ -77,19 +73,28 @@ public class addPartController implements Initializable {
         int max = Integer.parseInt(partMaxField.getText());
         String lastFieldText = partLastField.getText();
 
+        //error handling making sure correct data is input into the form
+        if (min >= max || stock < 0 || stock > max || stock < min) {
+            errorAlert.setContentText("Inventory must be positive and between max and min/ max must be greater than min");
+            errorAlert.showAndWait();
+            return;
+        }
+
 
         // Create an instance of the appropriate subclass based on the selected radio button
         Part newPart;
 
         if (inHouseRadioButton.isSelected()) {
-            int machineId = Integer.parseInt(lastFieldText);
-            newPart = new InHouse(0, name, price, stock, min, max, machineId);
-        } else if (outsourcedRadioButton.isSelected()) {
-            newPart = new Outsourced(0, name, price, stock, min, max, lastFieldText);
+            try{
+                int machineId = Integer.parseInt(lastFieldText);
+                newPart = new InHouse(0, name, price, stock, min, max, machineId);
+            } catch (Exception e) {
+                errorAlert.setContentText("Please input an Int for machine ID");
+                errorAlert.showAndWait();
+                return;
+            }
         } else {
-            // Handle the case where neither radio button is selected
-            // show an error message or take appropriate action
-            return;
+            newPart = new Outsourced(0, name, price, stock, min, max, lastFieldText);
         }
 
         // Call the addPart method from the Inventory class

@@ -30,6 +30,7 @@ public class mainController implements Initializable{
     @FXML
     private AnchorPane mainPane;
     Stage stage;
+
     public void onExitClicked() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
         alert.setTitle("Exit");
