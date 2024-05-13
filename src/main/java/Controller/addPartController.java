@@ -25,7 +25,6 @@ public class addPartController implements Initializable {
         this.mainController = mainController;
     }
     Stage stage;
-
     //text fields for user input
     @FXML
     private TextField partNameField;
