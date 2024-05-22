@@ -7,10 +7,7 @@ import Model.Outsourced;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.net.URL;
@@ -96,6 +93,16 @@ public class modifyPartController implements Initializable {
 
     @FXML
     public void onModifyPartSaveClicked() {
+
+        //error handling for blank sections
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setTitle("Error");
+        if( partNameField.getText().isEmpty() || partInventoryField.getText().isEmpty() || partCostField.getText().isEmpty() || partMaxField.getText().isEmpty() || partMinField.getText().isEmpty() || partLastField.getText().isEmpty()) {
+            errorAlert.setContentText("Please fill all the fields of the form");
+            errorAlert.showAndWait();
+            return;
+        }
+
         int partId = selectedPart.getId();
         String name = partNameField.getText();
         double price = Double.parseDouble(partCostField.getText());

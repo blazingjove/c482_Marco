@@ -43,10 +43,10 @@
   </Label>
   <Button layoutX="250.0" layoutY="343.0" mnemonicParsing="false" onAction="#onPartAdd" text="Add" />
   <Button layoutX="300.0" layoutY="343.0" mnemonicParsing="false" onAction="#onPartModify" text="Modify" />
-  <Button layoutX="362.0" layoutY="343.0" mnemonicParsing="false" onAction="#onPartDelete" text="Delete" />
+  <Button layoutX="369.0" layoutY="343.0" mnemonicParsing="false" onAction="#onPartDelete" text="Delete" />
   <Button layoutX="718.0" layoutY="343.0" mnemonicParsing="false" onAction="#onProductAdd" text="Add" />
-  <Button layoutX="767.0" layoutY="343.0" mnemonicParsing="false" onAction="#onProductModify" text="Modify" />
-  <Button layoutX="831.0" layoutY="343.0" mnemonicParsing="false" onAction="#onProductDelete" text="Delete" />
+  <Button layoutX="769.0" layoutY="343.0" mnemonicParsing="false" onAction="#onProductModify" text="Modify" />
+  <Button layoutX="836.0" layoutY="343.0" mnemonicParsing="false" onAction="#onProductDelete" text="Delete" />
   <Line endX="457.0" endY="338.0" layoutX="1.0" layoutY="26.0" startX="457.0" startY="92.29290771484375" />
   <Line endX="456.0" layoutX="449.0" layoutY="97.0" startX="-438.0" />
 </children>
